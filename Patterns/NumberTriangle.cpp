@@ -9,7 +9,7 @@ void NumberTriangle(int n){
         cout << endl;
     }
 }
-
+ 
 int main(){
     int t;
     cin >> t;
