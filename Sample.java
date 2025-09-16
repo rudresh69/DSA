@@ -1,57 +1,77 @@
-class Node
+class Node 
 {
-	int data;
+	int rollno;
+	int marks;
+	String name;
 	Node next;
-	
-	Node(int data)
+
+	Node(int rollno, int marks, String name) 
 	{
-		this.data=data;
-		this.next=null;
+		this.rollno = rollno;
+		this.marks = marks;
+		this.name = name;
+		this.next = null;
 	}
 }
-
-class LinkedList
+class LinkedList 
 {
 	Node head;
-	public void insert(int data)
+	public void insert(int rollno, int marks, String name) 
 	{
-		Node n1 = new Node(data);
-		if(head == null)
+		Node n1 = new Node(rollno, marks, name);
+		if (head == null) 
 		{
 			head = n1;
 			return;
 		}
 		Node temp = head;
-		while(temp.next != null)
+		while (temp.next != null) 
 		{
 			temp = temp.next;
 		}
 		temp.next = n1;
 	}
-	
-	public void show()
+	public void delete(int rollno) 
 	{
-		Node temp = head;
-		while(temp != null)
+		if (head == null) 
 		{
-			System.out.print(temp.data + "->");
+		return; 
+		}
+		if (head.rollno == rollno) 
+		{
+		head = head.next;
+		return;
+		}
+		Node temp = head;
+		while (temp.next != null && temp.next.rollno != rollno) 
+		{
+		temp = temp.next;
+		}
+		if (temp.next != null && temp.next.rollno == rollno) 
+		{
+		temp.next = temp.next.next;
+		}
+	}
+	public void show() {
+		Node temp = head;
+		while (temp != null) {
+			System.out.print(temp.rollno + "/" + temp.name + "/" + temp.marks + " -> ");
 			temp = temp.next;
 		}
-		System.out.print("null");
+		System.out.println("null");
 	}
 }
-
-class Sample
-{
-	public static void main(String []args)
-	{
+class Sample {
+	public static void main(String[] args) {
 		LinkedList l1 = new LinkedList();
-		l1.insert(10);
-		l1.insert(20);
-		l1.insert(23);
-		l1.insert(14);
-		
-		System.out.print("Linked List is:");
+		l1.insert(10, 100, "Sarvesh");
+		l1.insert(20, 90, "Kushal");
+		l1.insert(23, 95, "Vishwajit");
+		l1.insert(14, 92, "Rushikesh");
+
+		l1.delete(20);
+		l1.delete(10);
+		System.out.print("Linked List is: ");
 		l1.show();
 	}
 }
